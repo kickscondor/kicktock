@@ -1,0 +1,27 @@
+{
+  "name": "kicktock",
+  "version": "0.9.0",
+  "description": "Simple progress and completion events for batches of asynchronous tasks and Promises.",
+  "main": "kicktock.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kickscondor/kicktock.git"
+  },
+  "keywords": [
+    "async",
+    "promises"
+  ],
+  "author": "kickscondor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kickscondor/kicktock/issues"
+  },
+  "homepage": "https://github.com/kickscondor/kicktock#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
