@@ -1,12 +1,12 @@
 const EventEmitter = require('events').EventEmitter
 
 //
-// A 'kickfunk' is used to monitor asynchronous functions and to notify you
+// A 'kicktock' is used to monitor asynchronous functions and to notify you
 // concerning progress and completion of the tasks. This way you can monitor
-// many varied tasks with a single kickfunk---then move on after they are
+// many varied tasks with a single kicktock---then move on after they are
 // done. (See README.md for more.)
 //
-module.exports = function kickfunk (progress = null) {
+module.exports = function kicktock (progress = null) {
   let K = function (fn) {
     K.blocktotal += 1
     if (fn instanceof Promise) {
@@ -61,7 +61,7 @@ module.exports = function kickfunk (progress = null) {
       let err = args.shift()
       if (err instanceof Error)
         throw err
-      return fn.apply(this, args)
+      return (fn ? fn.apply(this, args) : null)
     })
   }
 
