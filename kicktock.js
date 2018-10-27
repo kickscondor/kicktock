@@ -8,10 +8,18 @@ const EventEmitter = require('events').EventEmitter
 //
 module.exports = function kicktock (progress = null) {
   let K = function (fn) {
+    let onErr = function (e) {
+      if (K.emitter.listenerCount('error') == 0) {
+        if (module.exports.errorHandler)
+          module.exports.errorHandler(e)
+      } else {
+        K.emitter.emit('error', e)
+      }
+    }
     K.blocktotal += 1
     if (fn instanceof Promise) {
       K.total += 1
-      return fn.catch(e => K.emitter.emit('error', e)).then(() => {
+      return fn.catch(onErr).then(() => {
         K.at += 1
         K.blockat += 1
         K.check()
@@ -26,7 +34,7 @@ module.exports = function kicktock (progress = null) {
         try {
           x = fn.apply(this, arguments)
         } catch (e) {
-          K.emitter.emit('error', e)
+          onErr(e)
         }
       }
       K.at += 1
@@ -94,3 +102,5 @@ module.exports = function kicktock (progress = null) {
 
   return K
 }
+
+module.exports.emitter = new EventEmitter()
